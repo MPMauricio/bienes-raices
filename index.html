@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InmoZuniga - Bienes Raíces (Prueba)</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <script>
+        // MODIFICA ESTA LISTA PARA AGREGAR, ELIMINAR O EDITAR CASAS
+        // Estados posibles: "Disponible", "Reservada", "Vendida"
+        const PROPIEDADES = [
+            {
+                id: 1,
+                titulo: "Moderna Casa en Urbanización El Trébol",
+                precio: "135,000",
+                ubicacion: "Santa Ana, El Salvador",
+                estado: "Disponible",
+                imagen: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                habitaciones: 3,
+                banos: 2
+            },
+            {
+                id: 2,
+                titulo: "Residencial Quinta Alta (Modelo Ampliado)",
+                precio: "165,000",
+                ubicacion: "Santa Ana, El Salvador",
+                estado: "Reservada",
+                imagen: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=800&q=80",
+                habitaciones: 4,
+                banos: 3
+            },
+            {
+                id: 3,
+                titulo: "Casa de Campo en las afueras de la ciudad",
+                precio: "95,000",
+                ubicacion: "Santa Ana, El Salvador",
+                estado: "Disponible",
+                imagen: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+                habitaciones: 3,
+                banos: 1
+            },
+            {
+                id: 4,
+                titulo: "Propiedad de una Planta en Colonia El Palmar",
+                precio: "78,000",
+                ubicacion: "Santa Ana, El Salvador",
+                estado: "Vendida",
+                imagen: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80",
+                habitaciones: 2,
+                banos: 1
+            },
+            {
+                id: 5,
+                titulo: "Preciosa Casa Estilo Colonial",
+                precio: "210,000",
+                ubicacion: "Santa Ana, El Salvador",
+                estado: "Disponible",
+                imagen: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+                habitaciones: 5,
+                banos: 4
+            },
+            {
+                id: 6,
+                titulo: "Casa Moderna cerca de Metrocentro Santa Ana",
+                precio: "145,000",
+                ubicacion: "Santa Ana, El Salvador",
+                estado: "Disponible",
+                imagen: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+                habitaciones: 3,
+                banos: 2
+            }
+        ];
+
+        // Configuración de contacto general
+        const CONFIG_CONTACTO = {
+            whatsapp: "50370000000", // Cambia por tu número (con 503 sin espacios)
+            mensajePredeterminado: "Hola, estoy interesado en una de las propiedades en Santa Ana."
+        };
+    </script>
+
+    <div class="bg-amber-500 text-white text-center py-1 text-sm font-semibold sticky top-0 z-50">
+        ⚠️ SITIO WEB DE PRUEBA / APRENDIZAJE
+    </div>
+
+    <nav class="bg-white shadow-md sticky top-7 z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-blue-900"><i
+                            class="fa-solid fa-house-chimney text-amber-500 mr-2"></i>InmoZuniga</span>
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium">
+                    <a href="#inicio" class="text-gray-600 hover:text-blue-900 transition">Inicio</a>
+                    <a href="#propiedades" class="text-gray-600 hover:text-blue-900 transition">Propiedades</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-blue-900 transition">Contacto</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="btn-menu" class="text-gray-600 focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="menu-movil"
+            class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-2 shadow-inner">
+            <a href="#inicio" class="block text-gray-600 py-2 font-medium" onclick="toggleMenu()">Inicio</a>
+            <a href="#propiedades" class="block text-gray-600 py-2 font-medium" onclick="toggleMenu()">Propiedades</a>
+            <a href="#contacto" class="block text-gray-600 py-2 font-medium" onclick="toggleMenu()">Contacto</a>
+        </div>
+    </nav>
+
+    <header id="inicio" class="relative bg-blue-900 text-white py-24 px-4 bg-cover bg-center"
+        style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&q=80');">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Encuentra la casa de tus sueños en Santa Ana
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200">Tu próximo hogar o inversión segura en El Salvador. Explora
+                nuestro catálogo de prueba.</p>
+            <div class="pt-4">
+                <a href="#propiedades"
+                    class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg">Ver
+                    Propiedades</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="propiedades" class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-blue-900">Propiedades Destacadas</h2>
+            <p class="text-gray-500 mt-2">Explora las opciones disponibles actualmente en la zona occidental.</p>
+        </div>
+
+        <div id="contenedor-casas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+    </main>
+
+    <section id="contacto" class="bg-gray-100 py-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900">¿Interesado en alguna propiedad?</h2>
+                <p class="text-gray-600 mt-2">Déjanos tus datos o comunícate directamente con nosotros de forma
+                    inmediata.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-2xl shadow-md">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-gray-800">InmoZuniga Bienes Raíces</h3>
+                    <p class="text-gray-600">Estamos listos para ayudarte a dar el paso hacia tu nuevo hogar.
+                        Contáctanos por cualquiera de nuestros canales oficiales.</p>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-600"><i
+                                class="fa-solid fa-location-dot text-amber-500 w-6 text-lg"></i> Santa Ana, El Salvador
+                        </p>
+                        <p class="flex items-center text-gray-600"><i class="fa-solid fa-phone text-amber-500 w-6"></i>
+                            +503 7000-0000</p>
+                        <p class="flex items-center text-gray-600"><i
+                                class="fa-solid fa-envelope text-amber-500 w-6"></i> info@inmozuniga.com</p>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/tu_id_aqui" method="POST" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                        <input type="text" name="nombre" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 bg-gray-50 border focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Teléfono de Contacto</label>
+                        <input type="tel" name="telefono" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 bg-gray-50 border focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Mensaje o Propiedad de Interés</label>
+                        <textarea name="mensaje" rows="3" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 bg-gray-50 border focus:outline-none focus:ring-2 focus:ring-blue-500">Hola, deseo más información...</textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-md transition shadow">Enviar
+                        Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-blue-950 text-gray-400 text-center py-6 text-sm">
+        <p>&copy; 2026 InmoZuniga. Diseñado con fines educativos.</p>
+    </footer>
+
+    <a id="btn-whatsapp" href="#" target="_blank"
+        class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 text-3xl shadow-2xl transition hover:scale-110 z-50 flex items-center justify-center w-16 h-16">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // 1. Mostrar/Ocultar Menú Hamburguesa Móvil
+        const btnMenu = document.getElementById('btn-menu');
+        const menuMovil = document.getElementById('menu-movil');
+
+        function toggleMenu() {
+            menuMovil.classList.toggle('hidden');
+        }
+        btnMenu.addEventListener('click', toggleMenu);
+
+        // 2. Renderizar Tarjetas de Casas desde el Panel Fácil
+        const contenedor = document.getElementById('contenedor-casas');
+
+        PROPIEDADES.forEach(casa => {
+            // Definir el color de la etiqueta según el estado
+            let colorEstado = "bg-green-500"; // Disponible
+            if (casa.estado === "Reservada") colorEstado = "bg-amber-500";
+            if (casa.estado === "Vendida") colorEstado = "bg-red-500";
+
+            // Crear el bloque HTML de cada casa
+            const tarjeta = `
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition hover:shadow-xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 w-full bg-gray-200">
+                            <img src="${casa.imagen}" alt="${casa.titulo}" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 ${colorEstado} text-white text-xs font-bold px-3 py-1 rounded-full uppercase shadow">
+                                ${casa.estado}
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <div class="text-2xl font-extrabold text-blue-900">$${casa.precio} <span class="text-sm font-normal text-gray-400">USD</span></div>
+                            <h3 class="font-bold text-gray-800 text-lg line-clamp-2">${casa.titulo}</h3>
+                            <p class="text-gray-500 text-sm flex items-center"><i class="fa-solid fa-location-dot text-amber-500 mr-1.5"></i> ${casa.ubicacion}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 border-t border-gray-50 bg-gray-50/50">
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <span><i class="fa-solid fa-bed text-blue-900/60 mr-1"></i> ${casa.habitaciones} Hab.</span>
+                            <span><i class="fa-solid fa-bath text-blue-900/60 mr-1"></i> ${casa.banos} Baños</span>
+                        </div>
+                        <a href="https://wa.me/${CONFIG_CONTACTO.whatsapp}?text=Hola,%20solicito%20información%20sobre:%20${encodeURIComponent(casa.titulo)}" target="_blank" class="block text-center bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white font-bold py-2 rounded-lg text-sm transition border border-blue-200">
+                            Consultar Propiedad
+                        </a>
+                    </div>
+                </div>
+            `;
+            contenedor.innerHTML += tarjeta;
+        });
+
+        // 3. Configurar enlace del Botón de WhatsApp General
+        document.getElementById('btn-whatsapp').href = `https://wa.me/${CONFIG_CONTACTO.whatsapp}?text=${encodeURIComponent(CONFIG_CONTACTO.mensajePredeterminado)}`;
+    </script>
+</body>
+
+</html>
